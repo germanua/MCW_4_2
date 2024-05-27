@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/article")
+@WebServlet("/article.jsp")
 public class ArticleServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private ArticleRepository articleRepository;
@@ -43,6 +44,17 @@ public class ArticleServlet extends HttpServlet {
 
         Article newArticle = new Article(title, content, publicationDate);
         articleRepository.addArticle(newArticle);
+
+        // Retrieve updated list of articles
+        List<Article> updatedArticles = articleRepository.getAllArticles();
+
+        // Set updated list of articles as request attribute
+        request.setAttribute("articles", updatedArticles);
+
+        // Forward to article.jsp for display
         request.getRequestDispatcher("/article.jsp").forward(request, response);
     }
+
 }
+
+

@@ -1,4 +1,3 @@
-<!-- articles.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,7 +19,7 @@
 </ul>
 <hr>
 <h2>Add New Article</h2>
-<form action="article" method="post">
+<form action="article.jsp" method="post">
     <label for="title">Title:</label><br>
     <input type="text" id="title" name="title"><br>
     <label for="content">Content:</label><br>
