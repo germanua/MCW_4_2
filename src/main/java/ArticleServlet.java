@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/articles")
+@WebServlet("/article")
 public class ArticleServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private ArticleRepository articleRepository;
@@ -23,7 +23,7 @@ public class ArticleServlet extends HttpServlet {
             throws ServletException, IOException {
         // Handle GET request to show articles
         request.setAttribute("articles", articleRepository.getAllArticles());
-        request.getRequestDispatcher("/articles.jsp").forward(request, response);
+        request.getRequestDispatcher("/article.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -43,6 +43,6 @@ public class ArticleServlet extends HttpServlet {
 
         Article newArticle = new Article(title, content, publicationDate);
         articleRepository.addArticle(newArticle);
-        response.sendRedirect(request.getContextPath() + "/articles");
+        request.getRequestDispatcher("/article.jsp").forward(request, response);
     }
 }
